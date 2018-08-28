@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>type systems</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+      }
+
+      html {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        padding-left: 15%;
+        padding-right: 15%
+      }
+
+      .title {
+        margin-top: 50pt;
+        font-size: 20pt;
+        color: #857769
+      }
+      .new {
+        margin-top: 50pt;
+        text-align: right;
+        font-size:10pt;
+      }
+      .source {
+        margin-top: 10pt;
+        text-align: right;
+        font-size:7pt;
+      }
+
+      a {
+        color: #78a081;
+        border-bottom: 1px solid #32231F;
+        text-decoration: none;
+      }
+
+      a:hover {
+        border-bottom: 2px solid #78a081;
+      }
+
+      @media(max-width:600pt) {
+        body {
+          padding-left: 2%;
+          padding-right: 2%
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="title"> </div>
+      <div class="new"><a href="javascript:set()">get me a new one</a></div>
+      <div class="source"><a target="_blank" href="http://github.com/joom/type.systems">source</a></div>
+    </div>
+    <script>
+      var qualifier = [
+          "abstract",
+          "standard",
+          "non-standard",
+          "naive",
+          "simple"
+      ];
+
+      var adj = [
+          ["pure", "https://en.wikipedia.org/wiki/Pure_type_system"],
+          ["paraconsistent", "https://ncatlab.org/nlab/show/paraconsistent+logic"],
+          ["cohesive", "https://ncatlab.org/nlab/show/cohesive+homotopy+type+theory"],
+          ["observational", "http://strictlypositive.org/ott.pdf"],
+          ["relevant", "https://en.wikipedia.org/wiki/Relevance_logic"],
+          ["epistemic", "https://en.wikipedia.org/wiki/Epistemic_modal_logic"],
+          ["classical", "https://ncatlab.org/nlab/show/classical+logic"],
+          ["fuzzy", "https://en.wikipedia.org/wiki/Fuzzy_logic"],
+          ["dualized", "http://www.doc.ic.ac.uk/~svb/CL&C14/submissions/clc14_submission_20.pdf"],
+          ["cubical", "https://ncatlab.org/nlab/show/cubical+type+theory"],
+          ["extensional", "https://ncatlab.org/nlab/show/extensional+type+theory"],
+          ["intensional", "https://ncatlab.org/nlab/show/intensional+type+theory"],
+          ["Cartesian", "https://guillaumebrunerie.github.io/pdf/cart-cube.pdf"],
+          ["guarded", "http://www.jonmsterling.com/pdfs/guarded-ctt-tr.pdf"],
+          ["categorical", "http://www.math.uwaterloo.ca/~asl2013/Slides/Joyal.pdf"],
+          ["fibrational", "http://dlicata.web.wesleyan.edu/pubs/lsr17multi/lsr17multi-ex.pdf"],
+          ["monoidal", "https://ncatlab.org/nlab/show/monoidal+category"],
+          ["lax", "http://twelf.org/wiki/Lax_logic"],
+          ["homotopy", "https://ncatlab.org/nlab/show/homotopy+type+theory"],
+          ["linear", "https://en.wikipedia.org/wiki/Substructural_type_system#Linear_type_systems"],
+          ["affine", "https://en.wikipedia.org/wiki/Substructural_type_system#Affine_type_systems"],
+          ["temporal", "https://arxiv.org/abs/1710.10258"],
+          ["modal", "https://ncatlab.org/nlab/show/modal+type+theory"],
+          ["contextual", "https://www.cs.cmu.edu/~fp/papers/tocl07.pdf"],
+          ["substructural", "https://en.wikipedia.org/wiki/Substructural_type_system"],
+          ["gradual", "https://en.wikipedia.org/wiki/Gradual_typing"],
+          ["directed", "https://ncatlab.org/nlab/show/directed+homotopy+type+theory"],
+          ["higher-dimensional", "http://www.cs.nott.ac.uk/~psznk/docs/report.pdf"],
+          ["higher-kinded", "https://en.wikipedia.org/wiki/Kind_(type_theory)"],
+          ["higher", "https://en.wikipedia.org/wiki/Cannabis_(drug)"],
+          ["impredicative", "https://wiki.haskell.org/Impredicative_types"],
+          ["univalent", "https://en.wikipedia.org/wiki/Univalent_foundations"],
+          ["computational", "http://www.scholarpedia.org/article/Computational_type_theory"]
+      ];
+      var theory = [
+          ["type theory", "https://en.wikipedia.org/wiki/Type_theory"],
+          ["Martin-Löf type theory", "https://en.wikipedia.org/wiki/Intuitionistic_type_theory"],
+          ["calculus of constructions", "https://en.wikipedia.org/wiki/Calculus_of_constructions"],
+          ["calculus of inductive constructions", "https://hal.inria.fr/hal-01094195/document"],
+          ["System F", "https://en.wikipedia.org/wiki/System_F"],
+          ["λ-calculus", "https://en.wikipedia.org/wiki/Lambda_calculus"],
+          ["Π-calculus", "https://en.wikipedia.org/wiki/%CE%A0-calculus"],
+          ["PCF", "https://en.wikipedia.org/wiki/Programming_Computable_Functions"]
+      ];
+      var feature = [
+          ["existential types", "https://en.wikipedia.org/wiki/Type_system#Existential_types"],
+          ["phantom types", "https://wiki.haskell.org/Phantom_type"],
+          ["row polymorphism", "https://www.cl.cam.ac.uk/teaching/1415/L28/rows.pdf"],
+          ["rank-2 polymorphism", "https://wiki.haskell.org/Rank-N_types"],
+          ["rank-N polymorphism", "https://wiki.haskell.org/Rank-N_types"],
+          ["full type inference", "https://stackoverflow.com/questions/10462479/what-is-a-fully-type-inferred-language-and-limitations-of-such-language"],
+          ["induction-recursion", "https://en.wikipedia.org/wiki/Induction-recursion"],
+          ["isorecursive μ-types", "https://en.wikipedia.org/wiki/Recursive_data_type#Isorecursive_types"],
+          ["equirecursive μ-types", "https://en.wikipedia.org/wiki/Recursive_data_type#Equirecursive_types"],
+          ["strong normalization", "https://en.wikipedia.org/wiki/Normalization_property_(abstract_rewriting)"],
+          ["refinement types", "https://en.wikipedia.org/wiki/Refinement_type"],
+          ["uniqueness types", "https://en.wikipedia.org/wiki/Uniqueness_type"],
+          ["quotient types", "https://en.wikipedia.org/wiki/Quotient_type"],
+          ["session types", "http://simonjf.com/2016/05/28/session-type-implementations.html"],
+          ["proof relevance", "https://ncatlab.org/nlab/show/proof+relevance"],
+          ["universe polymorphism", "https://ncatlab.org/nlab/show/universe+polymorphism"],
+          ["cumulativity", "https://ncatlab.org/homotopytypetheory/show/universe#cumulativity"],
+          ["lazy semantics", "https://en.wikipedia.org/wiki/Lazy_evaluation"],
+          ["primitive recursion", "https://en.wikipedia.org/wiki/Primitive_recursive_function"],
+          ["algebraic effects", "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/08/algeff-tr-2016-v2.pdf"],
+          ["double-negation elimination", "https://rufflewind.com/2016-12-11/double-negation-elimination"],
+          ["call/cc", "https://en.wikipedia.org/wiki/Call-with-current-continuation"]
+      ];
+
+
+      const pick = list => list[Math.floor(Math.random() * list.length)];
+      const link = pair => pair[1] !== "" ? `<a target="_blank" href="${pair[1]}">${pair[0]}</a>` : pair[0];
+      const put = list => link(pick(list));
+      const set = () => {
+        let sometimes = Math.random() < 0.8;
+        let someQualifier = sometimes ? `${pick(qualifier)} ` : ""
+        document.querySelector('.title').innerHTML = `${someQualifier}${put(adj)} ${put(theory)} with ${put(feature)}`;
+      };
+      set();
+    </script>
+  </body>
+</html>
